@@ -87,3 +87,64 @@ List-insert(L, x)   (L - liste; x - peker, ny node)
 5 x.prev = NIL
 
 *Setter inn en liste i en ny liste
+
+**Essensen er ved å peke rundt i listene/lista
+List-Delete(L, x)  (L - liste, x - skal fjernes)
+1 if x.prec != NIL
+2       x.prev.next = x.next
+3 else L.head = x.next
+4 if x.next != NIL
+5       x.next.prev = x.prev
+Får elementet i lista til å kun peke på andre, mens alle andre
+ikke peker på det elementet.
+*Den finnes fremdeles i minne #Søppeldata
+
+
+
+___HashTabeller___
+
+___Direkte addressering
+- Nøkkel = index
+
+Vi begrenser "Universet" vårt slik at vi får alle elementene våres inn
+
+Så er det å mappe nøklene til universet.
+[nøkkel][Satellitt-data]
+
+___Hashtabeller
+modifisert nøkkel er indeks
+(Knøvling er hashing)
+
+En type hashfunksjon:
+h(k) = floor(km), 0<= k < 1
+h(k) = k mod(m)
+h(k) ) floor(m(kA mod(1))), 0 < A < 1
+
+fordele ting så gjevnt som mulig, som virker relativt tilfeldig
+Skal ikke få masse kolisjoner på sikt.
+
+Strenger kan regnes som heltal,feks.
+
+
+to metoder for å håndterer kolisjoner.
+Chaining. Hver posisjon har en liste.
+
+Mange kollisjoner: Linært lange lister
+søk vil ta lineær tid
+
+
+Statisk datasett.
+Lag custom hashfunksjon - som kan garantere konstat kjøretid
+
+
+
+___Dynamiske tabeller___
+
+Array -> kan legge på et element på slutten/tail
+
+Allokerer nytt minne, tar ca n minne.
+
+
+Amortisert arbeid (Vi har en kostnad som fordeles over mange operasjona)
+- Kjøretid for en enkelt operasjon: ikke alltid informativt
+- Se på gjennomsnitt per operajson etter at mange har blitt utført

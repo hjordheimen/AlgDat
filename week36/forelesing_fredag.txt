@@ -1,0 +1,89 @@
+Enkle strukturer/ grunnleggende datastrukturer
+
+Stakker og køer, Lenkede lister, pekere og objekter, direkte addressering
+og hashtabeller, konfliktløsning ved kjedning. dynamiske tabeller
+
+implementasjon av grunnleggende datastrukturer.
+
+
+NB! To kritiske summer:
+Aritmetisk rekke (theta(n²)) summen:= (n*(n-1)/2) antall * gejnnomsnittet
+toerpotenser: 2^h - 1, summen er siste toerpotensen - 1. Assymtopisk.
+
+
+___Stakker og køer___
+
+___Stakker
+Tilgang kun til toppen av stakken
+
+stack-empty(S)
+1 if S.top == 0
+2   return TRUE
+3 else return FALSE
+(isEmpty(S) = S.top == 0)
+
+
+Push(S, x)
+1 S.top = S.top + 1
+2 S[S.top] = x
+
+
+POP(S)
+1 if stack-empty(S)
+2       error "Underflow"
+3 else S.top = S-top -1
+4       return S[S.top + 1]
+
+
+
+
+____Køer
+Først inn, først ut (FIFO)
+
+*tail reffererer til plassen bak den siste posisjonen i køen
+*Hvis halen ikke har mer å gå på i tabellen, så modulo-kjører vi den
+Enqueue(Q, x)
+1 Q[Q.tail] = x
+2 if Q.tail == Q.length
+3       Q.tail = 1
+4 else !.tail = Q.tail + 1
+
+
+Dequeue(Q)
+1 x = Q[Q.head]
+2 if Q.head == Q.length
+3       Q.head = 1
+4 else Q.head = Q.head + 1
+5 return x
+
+**Den forrige head står fremdeles i tabellen, som datasøppel, men det er ingen vinning i å kutte dem bort
+
+___Lenkede lister___
+[][][] - [][][] - [][][] - [][][]
+- Består av "Noder" som peker på neste(forrige)
+- Tar lineær tid å slå opp på gitt posisjon
+- Tar konstant tid å sette inn/slette elementer.
+
+***Traversering (Grafer trær)
+Lett å sette inn en verdi i en lenka liste, tungt å finne fram
+Motsatt i en array
+
+En liste sees på som en liste med hode og hale, og hvordan man traverserer lista
+
+List-Search(L, k)   (L - Liste, k - nøkkelverdi, x - nodepeker)
+1 x = L.head
+2 while x != NIL and x.key != key
+3       x = x.next
+4 return x
+
+NIL er ingenting
+
+
+List-insert(L, x)   (L - liste; x - peker, ny node)
+1 x.next = L.head
+2 if L.head != NIL
+3       L.head.prev = x
+4 L.head = x
+5 x.prev = NIL
+
+*Setter inn en liste i en ny liste
